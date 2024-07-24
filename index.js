@@ -9,6 +9,8 @@ dotenv.config();
 
 const app=express();
 
+app.use(cors()) 
+
 mongoose.connect(process.env.DATABASE_URL+"blog-app")
 
 const port=process.env.PORT || 3000;
@@ -25,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.use(express.json())
-app.use(cors()) 
+
 app.use('/uploads', express.static('uploads'))
 
 app.get("/", (req, res)=>{
